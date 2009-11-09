@@ -1,0 +1,6 @@
+Proxima is an example bookmarking application for Solar. It comes with a bare-bones membership management application as well.
+
+Place the example system config file in $system/config.php and browse to the installation.
+
+To register an account with the app, click on "Register" on the right-hand side, underneath the sign-in panel.
+
