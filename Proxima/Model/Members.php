@@ -57,7 +57,7 @@ class Proxima_Model_Members extends Proxima_Sql_Model
 		$this->_hasMany('nodes', array(
 		    'native_col'  => 'handle',
 		    'foreign_col' => 'member_handle',
-		);
+		));
     }
     
     public function fetchOneByConfirm($type, $hash)
