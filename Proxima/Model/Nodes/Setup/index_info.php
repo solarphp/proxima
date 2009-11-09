@@ -31,14 +31,6 @@
       0 => 'inherit',
     ),
   ),
-  'pos' => 
-  array (
-    'type' => 'normal',
-    'cols' => 
-    array (
-      0 => 'pos',
-    ),
-  ),
   'uri' => 
   array (
     'type' => 'normal',
@@ -63,12 +55,12 @@
       0 => 'slug',
     ),
   ),
-  'member_id' => 
+  'member_handle' => 
   array (
     'type' => 'normal',
     'cols' => 
     array (
-      0 => 'member_id',
+      0 => 'member_handle',
     ),
   ),
 );

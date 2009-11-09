@@ -54,11 +54,11 @@
     'primary' => false,
     'autoinc' => false,
   ),
-  'member_id' => 
+  'member_handle' => 
   array (
-    'name' => 'member_id',
-    'type' => 'int',
-    'size' => NULL,
+    'name' => 'member_handle',
+    'type' => 'varchar',
+    'size' => 32,
     'scope' => NULL,
     'default' => NULL,
     'require' => true,
@@ -87,17 +87,6 @@
     'primary' => false,
     'autoinc' => false,
   ),
-  'pos' => 
-  array (
-    'name' => 'pos',
-    'type' => 'int',
-    'size' => NULL,
-    'scope' => NULL,
-    'default' => NULL,
-    'require' => false,
-    'primary' => false,
-    'autoinc' => false,
-  ),
   'status' => 
   array (
     'name' => 'status',
@@ -109,13 +98,13 @@
     'primary' => false,
     'autoinc' => false,
   ),
-  'mime' => 
+  'pos' => 
   array (
-    'name' => 'mime',
-    'type' => 'varchar',
-    'size' => 64,
+    'name' => 'pos',
+    'type' => 'int',
+    'size' => NULL,
     'scope' => NULL,
-    'default' => 'text/plain',
+    'default' => NULL,
     'require' => false,
     'primary' => false,
     'autoinc' => false,
@@ -145,17 +134,6 @@
   'body' => 
   array (
     'name' => 'body',
-    'type' => 'clob',
-    'size' => NULL,
-    'scope' => NULL,
-    'default' => NULL,
-    'require' => false,
-    'primary' => false,
-    'autoinc' => false,
-  ),
-  'prefs' => 
-  array (
-    'name' => 'prefs',
     'type' => 'clob',
     'size' => NULL,
     'scope' => NULL,
