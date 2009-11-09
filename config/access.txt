@@ -1,0 +1,24 @@
+# flag   type    name    class                   action
+deny    handle  *       *                       *
+
+# bookmarks
+allow   handle  *       Proxima_App_Bookmarks   browse
+allow   handle  *       Proxima_App_Bookmarks   member
+allow   handle  *       Proxima_App_Bookmarks   tags
+allow   handle  *       Proxima_App_Bookmarks   read
+allow   owner   +       Proxima_App_Bookmarks   edit
+allow   handle  +       Proxima_App_Bookmarks   add
+allow   owner   +       Proxima_App_Bookmarks   delete
+allow   handle  *       Proxima_App_Bookmarks   search
+
+# members
+allow   handle  *       Proxima_App_Members     browse
+allow   handle  *       Proxima_App_Members     read
+allow   owner   +       Proxima_App_Members     edit
+allow   handle  ?       Proxima_App_Members     add
+allow   owner   +       Proxima_App_Members     delete
+allow   handle  *       Proxima_App_Members     search
+allow   handle  ?       Proxima_App_Members     register
+allow   handle  ?       Proxima_App_Members     forgot
+allow   handle  ?       Proxima_App_Members     reset
+allow   owner   +       Proxima_App_Members     passwd

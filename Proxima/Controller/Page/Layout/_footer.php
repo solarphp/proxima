@@ -1,0 +1,1 @@
+<p>Proxima is a <a href="http://solarphp.com">Solar Framework</a> example project.</p>

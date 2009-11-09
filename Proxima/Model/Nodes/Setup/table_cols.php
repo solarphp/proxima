@@ -1,0 +1,167 @@
+<?php return array (
+  'id' => 
+  array (
+    'name' => 'id',
+    'type' => 'int',
+    'size' => NULL,
+    'scope' => NULL,
+    'default' => NULL,
+    'require' => true,
+    'primary' => true,
+    'autoinc' => true,
+  ),
+  'created' => 
+  array (
+    'name' => 'created',
+    'type' => 'timestamp',
+    'size' => NULL,
+    'scope' => NULL,
+    'default' => NULL,
+    'require' => false,
+    'primary' => false,
+    'autoinc' => false,
+  ),
+  'updated' => 
+  array (
+    'name' => 'updated',
+    'type' => 'timestamp',
+    'size' => NULL,
+    'scope' => NULL,
+    'default' => NULL,
+    'require' => false,
+    'primary' => false,
+    'autoinc' => false,
+  ),
+  'inherit' => 
+  array (
+    'name' => 'inherit',
+    'type' => 'varchar',
+    'size' => 32,
+    'scope' => NULL,
+    'default' => NULL,
+    'require' => false,
+    'primary' => false,
+    'autoinc' => false,
+  ),
+  'slug' => 
+  array (
+    'name' => 'slug',
+    'type' => 'varchar',
+    'size' => 255,
+    'scope' => NULL,
+    'default' => NULL,
+    'require' => false,
+    'primary' => false,
+    'autoinc' => false,
+  ),
+  'member_id' => 
+  array (
+    'name' => 'member_id',
+    'type' => 'int',
+    'size' => NULL,
+    'scope' => NULL,
+    'default' => NULL,
+    'require' => true,
+    'primary' => false,
+    'autoinc' => false,
+  ),
+  'parent_id' => 
+  array (
+    'name' => 'parent_id',
+    'type' => 'int',
+    'size' => NULL,
+    'scope' => NULL,
+    'default' => NULL,
+    'require' => false,
+    'primary' => false,
+    'autoinc' => false,
+  ),
+  'uri' => 
+  array (
+    'name' => 'uri',
+    'type' => 'varchar',
+    'size' => 255,
+    'scope' => NULL,
+    'default' => NULL,
+    'require' => false,
+    'primary' => false,
+    'autoinc' => false,
+  ),
+  'pos' => 
+  array (
+    'name' => 'pos',
+    'type' => 'int',
+    'size' => NULL,
+    'scope' => NULL,
+    'default' => NULL,
+    'require' => false,
+    'primary' => false,
+    'autoinc' => false,
+  ),
+  'status' => 
+  array (
+    'name' => 'status',
+    'type' => 'varchar',
+    'size' => 32,
+    'scope' => NULL,
+    'default' => NULL,
+    'require' => false,
+    'primary' => false,
+    'autoinc' => false,
+  ),
+  'mime' => 
+  array (
+    'name' => 'mime',
+    'type' => 'varchar',
+    'size' => 64,
+    'scope' => NULL,
+    'default' => 'text/plain',
+    'require' => false,
+    'primary' => false,
+    'autoinc' => false,
+  ),
+  'subj' => 
+  array (
+    'name' => 'subj',
+    'type' => 'varchar',
+    'size' => 255,
+    'scope' => NULL,
+    'default' => NULL,
+    'require' => false,
+    'primary' => false,
+    'autoinc' => false,
+  ),
+  'summ' => 
+  array (
+    'name' => 'summ',
+    'type' => 'clob',
+    'size' => NULL,
+    'scope' => NULL,
+    'default' => NULL,
+    'require' => false,
+    'primary' => false,
+    'autoinc' => false,
+  ),
+  'body' => 
+  array (
+    'name' => 'body',
+    'type' => 'clob',
+    'size' => NULL,
+    'scope' => NULL,
+    'default' => NULL,
+    'require' => false,
+    'primary' => false,
+    'autoinc' => false,
+  ),
+  'prefs' => 
+  array (
+    'name' => 'prefs',
+    'type' => 'clob',
+    'size' => NULL,
+    'scope' => NULL,
+    'default' => NULL,
+    'require' => false,
+    'primary' => false,
+    'autoinc' => false,
+  ),
+);
