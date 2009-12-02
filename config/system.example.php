@@ -52,8 +52,12 @@ $config['Solar_Auth'] = array(
 
 // access control
 $config['Solar_Access'] = array(
-    'adapter' => 'Solar_Access_Adapter_File',
-    'file'    => "$system/source/proxima/config/access.txt",
+    'adapter'      => 'Solar_Access_Adapter_File',
+    'file'         => "$system/source/proxima/config/access.txt",
+    'owner_method' => array(
+        'Proxima_Model_Nodes_Record'   => 'accessIsOwner',
+        'Proxima_Model_Members_Record' => 'accessIsOwner',
+    ),
 );
 
 /**
