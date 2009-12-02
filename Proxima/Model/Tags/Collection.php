@@ -15,17 +15,7 @@ class Proxima_Model_Tags_Collection extends Proxima_Sql_Model_Collection
      */
     public function getNames()
     {
-        // use a clone so we don't screw up external iterations.
-        $clone = clone($this);
-        
-        // build the list
-        $list = array();
-        foreach ($clone as $tag) {
-            $list[] = $tag->name;
-        }
-        
-        // done!
-        return $list;
+        return $this->getColVals('name');
     }
     
     /**
