@@ -5,3 +5,6 @@ Copy the `config/system.example.php` file to `$system/config.php` and browse to 
 To register an account with the app, click on "Register" on the right-hand side, underneath the sign-in panel.
 
 To add a bookmark after signing in, browse to "/bookmarks" and click on "Add New Bookmark".
+
+Note that the "forgot password" feature sends email; by default, the emails are saved in `$system/tmp/mail` instead of being sent.  To really send email, un-comment the approriate lines in the config file.
+
