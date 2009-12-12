@@ -73,6 +73,15 @@ abstract class Proxima_Controller_Model extends Proxima_Controller_Page
     
     /**
      * 
+     * The current authenticated user.
+     * 
+     * @var Solar_User
+     * 
+     */
+    public $user;
+    
+    /**
+     * 
      * The default action when no action is specified.
      * 
      * @var string
@@ -140,6 +149,7 @@ abstract class Proxima_Controller_Model extends Proxima_Controller_Page
         
         // set properties from registry
         $this->_model = Solar_Registry::get('model_catalog');
+        $this->user   = Solar_Registry::get('user');
         
         // if model name not preset, use the last part of the class name.
         // e.g., `Vendor_Something_FooBar => foo_bar`.
@@ -490,7 +500,9 @@ abstract class Proxima_Controller_Model extends Proxima_Controller_Page
      */
     protected function _loadItem()
     {
-        $data = $this->_request->post($this->model_name, array());
+        $model      = $this->_model->getModel($this->model_name);
+        $array_name = $model->array_name;
+        $data       = $this->_request->post($array_name, array());
         
         $cols = array();
         if (! empty($this->_form_cols[$this->_action])) {

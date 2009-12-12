@@ -17,24 +17,24 @@ class Proxima_Model_Bookmarks_Record extends Proxima_Model_Nodes_Record
     {
         $form = parent::newForm($spec);
         
-        $form->setAttribs('bookmarks[subj]', array(
+        $form->setAttribs('bookmark[subj]', array(
             'size' => '40',
         ));
         
-        $form->setAttribs('bookmarks[summ]', array(
+        $form->setAttribs('bookmark[summ]', array(
             'rows' => '5',
             'cols' => '40',
         ));
         
-        $form->setAttribs('bookmarks[uri]', array(
+        $form->setAttribs('bookmark[uri]', array(
             'size' => '40',
         ));
         
-        $form->setAttribs('bookmarks[pos]', array(
+        $form->setAttribs('bookmark[pos]', array(
             'size' => '3',
         ));
         
-        $form->setAttribs('bookmarks[tags_as_string]', array(
+        $form->setAttribs('bookmark[tags_as_string]', array(
             'size' => '40',
         ));
         
