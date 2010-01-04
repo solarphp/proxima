@@ -11,8 +11,8 @@ class Proxima_Model_Nodes extends Proxima_Sql_Model
      * Status constants.
      * 
      */
-    const STATUS_PUBLIC = 'public';
     const STATUS_DRAFT = 'draft';
+    const STATUS_PUBLIC = 'public';
     
     /**
      * 
@@ -36,8 +36,8 @@ class Proxima_Model_Nodes extends Proxima_Sql_Model
         $this->_addFilter('email', 'validateEmail');
         $this->_addFilter('uri', 'validateUri');
         $this->_addFilter('status', 'validateInList', array(
-            self::STATUS_PUBLIC,
             self::STATUS_DRAFT,
+            self::STATUS_PUBLIC,
         ));
         
         // relationships
