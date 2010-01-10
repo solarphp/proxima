@@ -98,9 +98,6 @@ class Proxima_App_Bookmarks extends Proxima_Controller_Bread
         
         // 'created_desc' => 'bookmarks.created desc'
         $this->_order = "bookmarks." . str_replace('_', ' ', $key);
-        
-        Solar::dump($this->_order);
-        
     }
     
     protected function _preRun()
