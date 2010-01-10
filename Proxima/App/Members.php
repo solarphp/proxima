@@ -4,7 +4,7 @@
  * Generic model application for members.
  * 
  */
-class Proxima_App_Members extends Proxima_Controller_Model {
+class Proxima_App_Members extends Proxima_Controller_Bread {
     
     /**
      * 
@@ -113,7 +113,8 @@ class Proxima_App_Members extends Proxima_Controller_Model {
      */
     public function actionAdd()
     {
-        return $this->_redirect("/{$this->_controller}/register");
+        // 301 Moved Permanently
+        return $this->_redirect("/{$this->_controller}/register", 301);
     }
     
     /**
@@ -201,6 +202,7 @@ class Proxima_App_Members extends Proxima_Controller_Model {
     {
         // is the user allowed access?
         if (! $this->_isUserAllowed()) {
+            
             // if user is logged in, redirect to member profile
             if ($this->user->auth->isValid()) {
                 $action = "{$this->_controller}/read";
@@ -213,7 +215,8 @@ class Proxima_App_Members extends Proxima_Controller_Model {
         }
         
         // get the POST data using the array name
-        $data = $this->_request->post($this->model_name, array());
+        $array_name = $this->_model->members->array_name;
+        $data = $this->_request->post($array_name, array());
         
         // process: send
         if ($this->_isProcess('send') && ! empty($data['email'])) {
@@ -256,7 +259,7 @@ class Proxima_App_Members extends Proxima_Controller_Model {
         if (! $this->_isUserAllowed()) {
             // if user is logged in, redirect to member password reset
             if ($this->user->auth->isValid()) {
-                $this->_redirect("{$this->_controller}/passwd");
+                $this->_redirect("/{$this->_controller}/passwd");
             }
             // otherwise we're done
             return;
@@ -288,5 +291,86 @@ class Proxima_App_Members extends Proxima_Controller_Model {
         
         // done!
         $this->_setFormItem();
+    }
+    
+    
+    /**
+     * 
+     * Explicit login handling for members.
+     * 
+     * Normally, Solar_Auth_Adapter::start() will do everything for you when
+     * Solar_Auth_Adapter::$allow is true. This method makes it so that even 
+     * when $allow is false, you can still process a login request.
+     * 
+     * @return void
+     * 
+     */
+    public function actionLogin()
+    {
+        // turn off caching
+        $this->_response->setNoCache();
+        
+        // convenience var
+        $auth = $this->user->auth;
+        
+        // if already logged in, redirect to the profile page
+        if ($auth->isValid()) {
+            $id = $auth->uid;
+            $this->_redirect("/{$this->_controller}/read/{$id}");
+        }
+        
+        // is this a login request?
+        if ($auth->isLoginRequest()) {
+            // process it; this will honor any redirect in the form vars
+            $auth->processLogin();
+            
+            // did it succeed?
+            if ($auth->isValid()) {
+                // honor a flash redirect if it exists
+                $uri = $this->_session->getFlash('redirect');
+                if ($uri) {
+                    $this->_redirectNoCache($uri);
+                }
+                
+                // final fallback: redirect to the profile page
+                $id = $auth->uid;
+                $this->_redirect("/{$this->_controller}/read/{$id}");
+            }
+        }
+    }
+    
+    /**
+     * 
+     * Explicit logout handling for members.
+     * 
+     * Normally, Solar_Auth_Adapter::start() will do everything for you when
+     * Solar_Auth_Adapter::$allow is true. This method makes it so that even 
+     * when $allow is false, you can still process a logout request.
+     * 
+     * @return void
+     * 
+     */
+    public function actionLogout()
+    {
+        // turn off caching
+        $this->_response->setNoCache();
+        
+        // convenience var
+        $auth = $this->user->auth;
+        
+        // is user already logged out?
+        if (! $auth->isValid()) {
+            // redirect to login
+            $this->_redirectNoCache("/{$this->_controller}/login");
+        }
+        
+        // process the logout; this will honor any redirect in the form vars
+        $auth->processLogout();
+        
+        // if we have a flash redirect, honor it
+        $uri = $this->_session->getFlash('redirect');
+        if ($uri) {
+            $this->_redirectNoCache($uri);
+        }
     }
 }

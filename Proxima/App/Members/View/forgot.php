@@ -7,9 +7,11 @@
 
 <p><?php echo $this->getText('TEXT_FORGOT'); ?></p>
 
-<?php echo $this->form()
-                ->auto($this->form)
-                ->addProcess('send')
-                ->decorateAsPlain()
-                ->fetch();
+<?php 
+    $this->form->setAttribs('member[email]', array('size' => 30));
+    echo $this->form()
+              ->auto($this->form)
+              ->addProcess('send')
+              ->decorateAsPlain()
+              ->fetch();
 ?>
