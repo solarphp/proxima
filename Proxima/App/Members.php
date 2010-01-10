@@ -22,7 +22,7 @@ class Proxima_App_Members extends Proxima_Controller_Bread {
      * @var array
      * 
      */
-    public $item_cols = array('handle', 'moniker', 'email', 'uri');
+    public $item_cols = array('handle', 'moniker', 'uri');
     
     /**
      * 
@@ -31,7 +31,7 @@ class Proxima_App_Members extends Proxima_Controller_Bread {
      * @var array
      * 
      */
-    public $list_cols = array('handle', 'moniker', 'email', 'uri');
+    public $list_cols = array('handle', 'moniker', 'uri');
     
     /**
      * 
