@@ -44,8 +44,8 @@ if ($this->list_cols) {
                     $text = "<em>" . strtolower(gettype($val)) . "</em>";
                 }
                 
-                // done
                 echo "<li>$label: $text</li>\n";
+                
             }
             
             $id = $item->getPrimaryVal();

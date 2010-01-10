@@ -4,7 +4,7 @@
  * Base page-controller class for models.
  * 
  */
-abstract class Proxima_Controller_Model extends Proxima_Controller_Page
+abstract class Proxima_Controller_Bread extends Proxima_Controller_Page
 {
     /**
      * 
@@ -266,6 +266,9 @@ abstract class Proxima_Controller_Model extends Proxima_Controller_Page
             $this->form->setStatus(Solar_Form::STATUS_SUCCESS);
             $this->form->feedback = $this->locale('SUCCESS_ADDED');
         }
+        
+        // turn off http caching
+        $this->_response->setNoCache();
     }
     
     /**
@@ -302,6 +305,9 @@ abstract class Proxima_Controller_Model extends Proxima_Controller_Page
         
         // set the form-building hints for the item
         $this->_setFormItem();
+        
+        // turn off http caching
+        $this->_response->setNoCache();
     }
     
     /**
@@ -337,6 +343,9 @@ abstract class Proxima_Controller_Model extends Proxima_Controller_Page
             // redirect to browse
             $this->_redirectNoCache("/{$this->_controller}");
         }
+        
+        // turn off http caching
+        $this->_response->setNoCache();
     }
     
     /**

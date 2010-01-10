@@ -22,7 +22,7 @@ $css_id = $this->escape(
 if ($this->item_cols) {
     $cols = $this->item_cols;
 } else {
-    $cols = array_keys($this->item->getModel()->table_cols);
+    $cols = array_keys($item->getModel()->table_cols);
 }
 ?>
 <dl id="<?php echo $css_id ?>" class="<?php echo $css_class ?>"><?php
