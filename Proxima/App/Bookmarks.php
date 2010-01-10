@@ -4,7 +4,7 @@
  * Generic model application for bookmarks.
  * 
  */
-class Proxima_App_Bookmarks extends Proxima_Controller_Model
+class Proxima_App_Bookmarks extends Proxima_Controller_Bread
 {
     /**
      * 
@@ -84,7 +84,7 @@ class Proxima_App_Bookmarks extends Proxima_Controller_Model
      * @var array
      * 
      */
-    protected $_search_cols = array();
+    protected $_search_cols = array('subj', 'body', 'uri');
     
     protected function _setOrder()
     {
