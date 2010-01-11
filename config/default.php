@@ -24,8 +24,15 @@ $config['Solar_Access']['owner_method']['Proxima_Model_Nodes_Record']   = 'acces
  * Model config: members
  */
 $config['Proxima_Model_Members_Record'] = array(
-    'email_forgot_from' => "do-not-reply@{$domain}",
-    'email_forgot_subj' => "[Proxima] Forgot Password",
-    'email_forgot_body' => "Click on this link to reset your password:\n\n"
-                         . "http://{$domain}/members/reset/{:confirm_hash}",
+    
+    'email_activate_from' => "do-not-reply@{$domain}",
+    'email_activate_subj' => "[Proxima] Activate Account",
+    'email_activate_body' => "Click on this link to activate your new account "
+                           . "as `{:handle}`:\n\n"
+                           . "http://{$domain}/members/activate/{:confirm_hash}",
+                           
+    'email_forgot_from'   => "do-not-reply@{$domain}",
+    'email_forgot_subj'   => "[Proxima] Forgot Password",
+    'email_forgot_body'   => "Click on this link to reset your password:\n\n"
+                           . "http://{$domain}/members/reset/{:confirm_hash}",
 );

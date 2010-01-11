@@ -24,3 +24,4 @@ allow   handle  ?       Proxima_App_Members     reset
 allow   owner   +       Proxima_App_Members     passwd
 allow   handle  *       Proxima_App_Members     login
 allow   handle  *       Proxima_App_Members     logout
+allow   handle  *       Proxima_App_Members     activate
