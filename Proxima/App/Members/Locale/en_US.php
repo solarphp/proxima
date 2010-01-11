@@ -8,9 +8,11 @@ return array(
     'PROCESS_PASSWD'            => 'Change Password',
     'PROCESS_SEND'              => 'Send Email',
     'SUCCESS_PASSWD'            => 'Password changed!',
+    'SUCCESS_ACTIVATE'          => 'Account activated!',
     'TEXT_EMAIL_NOT_FOUND'      => 'Sorry, we didn\'t find that email address in the member list.',
     'TEXT_FORGOT'               => 'Enter your email address below, then press "Send". We will send you a link to reset your password.',
     'TEXT_PASSWD'               => 'Please enter a new password.',
     'TEXT_SENT_FORGOT_EMAIL'    => 'We have emailed a link to your "{:email}" address so you can reset your password.',
+    'TEXT_SENT_ACTIVATE_EMAIL'  => 'We have emailed a link to your "{:email}" address so you can activate your account.',
     'ERR_NO_RECORDS'            => 'No member records found.',
 );

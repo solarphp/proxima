@@ -174,11 +174,8 @@ class Proxima_App_Members extends Proxima_Controller_Bread {
         
         // process: save
         if ($this->_isProcess('save') && $this->_saveItem()) {
-            // save a flash value for the next page
-            $this->_session->setFlash('success_added', true);
-            // redirect to reading using the primary-key value
-            $id = $this->item->getPrimaryVal();
-            return $this->_redirectNoCache("/{$this->_controller}/read/$id");
+            $this->item->sendActivateEmail();
+            $this->_view = 'activateSent';
         }
         
         // set the form-building hints for the item
@@ -251,7 +248,7 @@ class Proxima_App_Members extends Proxima_Controller_Bread {
     {
         // is the user allowed access?
         if (! $this->_isUserAllowed()) {
-            // if user is logged in, redirect to member password reset
+            // if user is logged in, redirect to member password change
             if ($this->user->auth->isValid()) {
                 $this->_redirect("/{$this->_controller}/passwd");
             }
@@ -287,6 +284,46 @@ class Proxima_App_Members extends Proxima_Controller_Bread {
         $this->_setFormItem();
     }
     
+    /**
+     * 
+     * Given a confirmation hash, activates a new member account.
+     * 
+     * @param string $hash The confirmation hash from the "activate" email.
+     * 
+     * @return void
+     * 
+     */
+    public function actionActivate($hash = null)
+    {
+        // is the user allowed access?
+        if (! $this->_isUserAllowed()) {
+            // if user is logged in, redirect to member profile
+            if ($this->user->auth->isValid()) {
+                $id = $this->user->auth->uid;
+                $this->_redirect("/{$this->_controller}/read/$id");
+            }
+            // otherwise we're done
+            return;
+        }
+        
+        // find the member record by confirmation type and hash
+        $this->item = $this->_model->members->fetchOneByConfirm(
+            Proxima_Model_Members::CONFIRM_TYPE_ACTIVATE,
+            $hash
+        );
+        
+        // did we find it?
+        if (! $this->item) {
+            return $this->_error('ERR_NO_SUCH_ITEM');
+        }
+        
+        // activate the member
+        $this->item->activate();
+        
+        // keep a flash message for it, and redirect to login
+        $this->_session->setFlash('success_activate', true);
+        $this->_redirect("/{$this->_controller}/login");
+    }
     
     /**
      * 
@@ -335,6 +372,11 @@ class Proxima_App_Members extends Proxima_Controller_Bread {
         // catch flash indicating a successful password change
         if ($this->_session->getFlash('success_passwd')) {
             $this->feedback = 'SUCCESS_PASSWD';
+        }
+        
+        // catch flash indicating a successful account activation
+        if ($this->_session->getFlash('success_activate')) {
+            $this->feedback = 'SUCCESS_ACTIVATE';
         }
     }
     
