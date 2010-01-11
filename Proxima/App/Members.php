@@ -188,10 +188,6 @@ class Proxima_App_Members extends Proxima_Controller_Bread {
         
         // set the form-building hints for the item
         $this->_setFormItem();
-        
-        // force these form elements
-        $this->form->setType('member[passwd_new]', 'password');
-        $this->form->setType('member[passwd_confirm]', 'password');
     }
     
     /**

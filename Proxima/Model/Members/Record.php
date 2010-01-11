@@ -118,8 +118,8 @@ class Proxima_Model_Members_Record extends Proxima_Sql_Model_Record
 	public function newForm($cols = null)
 	{
 		$form = parent::newForm($cols);
-		$form->setType('members[passwd_new]', 'password');
-		$form->setType('members[passwd_confirm]', 'password');
+		$form->setType('member[passwd_new]', 'password');
+		$form->setType('member[passwd_confirm]', 'password');
 		return $form;
 	}
     
