@@ -90,11 +90,6 @@ class Proxima_App_Members extends Proxima_Controller_Bread {
             $this->feedback = 'SUCCESS_ADDED';
         }
         
-        // catch flash indicating a successful password change
-        if ($this->_session->getFlash('success_passwd')) {
-            $this->feedback = 'SUCCESS_PASSWD';
-        }
-        
         // perform the rest of the action
         return parent::actionRead($id);
     }
@@ -205,9 +200,8 @@ class Proxima_App_Members extends Proxima_Controller_Bread {
             
             // if user is logged in, redirect to member profile
             if ($this->user->auth->isValid()) {
-                $action = "{$this->_controller}/read";
                 $id = $this->user->auth->uid;
-                $this->_redirect("/$action/$id");
+                $this->_redirect("/{$this->_controller}/read/$id");
             }
             
             // otherwise we're done
@@ -286,7 +280,7 @@ class Proxima_App_Members extends Proxima_Controller_Bread {
             $this->_session->setFlash('success_passwd', true);
             // redirect to reading using the primary-key value
             $id = $this->item->id;
-            return $this->_redirectNoCache("/{$this->_controller}/read/$id");
+            return $this->_redirectNoCache("/{$this->_controller}/login");
         }
         
         // done!
@@ -336,6 +330,11 @@ class Proxima_App_Members extends Proxima_Controller_Bread {
                 $id = $auth->uid;
                 $this->_redirect("/{$this->_controller}/read/{$id}");
             }
+        }
+        
+        // catch flash indicating a successful password change
+        if ($this->_session->getFlash('success_passwd')) {
+            $this->feedback = 'SUCCESS_PASSWD';
         }
     }
     

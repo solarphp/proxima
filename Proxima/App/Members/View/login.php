@@ -1,11 +1,14 @@
 <h2><?php echo $this->escape(ucwords($this->controller)); ?></h2>
 <h3><?php echo $this->getText('HEADING_LOGIN'); ?></h3>
 
-
 <?php
+    if ($this->feedback) {
+        echo "<p>" . $this->getText($this->feedback) . "</p>\n";
+    }
+    
     $text = $this->user->auth->getStatusText();
     if ($text) {
-        echo '<p>' . $this->getText($text) . '</p>';
+        echo "<p>" . $this->getText($text) . "</p>\n";
     }
     
     echo $this->form()
