@@ -10,25 +10,34 @@ class Proxima_Model_Members_Record extends Proxima_Sql_Model_Record
      * 
      * User-defined configuration values.
      * 
-     * Keys are ...
-     * 
-     * `email_forgot_from`
-     * : (string) The "From:" address when sending password-reset emails.
-     * 
-     * `email_forgot_subj`
-     * : (string) The "Subject:" line when sending password-reset emails.
-     * 
-     * `email_forgot_body`
-     * : (string) The body of the password-reset email.
-     * 
      * Note that the `email_*_body` keys can use {:col_name} placeholders; 
      * the corresponding values of the record will be interpolated into the
      * text before sending.
+     * 
+     * @config string email_activate_from The "From:" address when sending 
+     * account-activation emails.
+     * 
+     * @config string email_activate_subj The "Subject:" line when sending 
+     * account-activation emails.
+     * 
+     * @config string email_activate_body The body of the account-activation 
+     * email.
+     * 
+     * @config string email_forgot_from The "From:" address when sending 
+     * password-reset emails.
+     * 
+     * @config string email_forgot_subj The "Subject:" line when sending 
+     * password-reset emails.
+     * 
+     * @config string email_forgot_body The body of the password-reset email.
      * 
      * @var array
      * 
      */
     protected $_Proxima_Model_Members_Record = array(
+        'email_activate_from'      => null,
+        'email_activate_subj'      => null,
+        'email_activate_body'      => null,
         'email_forgot_from'        => null,
         'email_forgot_subj'        => null,
         'email_forgot_body'        => null,
@@ -101,6 +110,7 @@ class Proxima_Model_Members_Record extends Proxima_Sql_Model_Record
      */
 	public function _preFilter()
 	{
+	    parent::_preFilter();
 		if ($this->__isset('passwd_new')) {
 		    $salt = Solar_Config::get('Solar_Auth_Adapter_Sql', 'salt');
 			$this->passwd = hash('md5', $salt . $this->passwd_new);
@@ -125,14 +135,17 @@ class Proxima_Model_Members_Record extends Proxima_Sql_Model_Record
     
     /**
      * 
-     * Pre-insert method to force the status code to 'active'.
+     * Pre-insert method to force the status code to 'new'.
      * 
      * @return void
      * 
      */
     protected function _preInsert()
     {
-        $this->status_code  = Proxima_Model_Members::STATUS_ACTIVE;
+        parent::_preInsert();
+        $this->status_code  = Proxima_Model_Members::STATUS_NEW;
+        $this->confirm_type = Proxima_Model_Members::CONFIRM_TYPE_ACTIVATE;
+        $this->confirm_hash = $this->getRandomConfirmHash();
     }
     
     /**
@@ -157,6 +170,30 @@ class Proxima_Model_Members_Record extends Proxima_Sql_Model_Record
         $mail->setFrom($this->_config['email_forgot_from'])
              ->addTo($this->email)
              ->setSubject($this->_config['email_forgot_subj'])
+             ->setText($text);
+        
+        // send it!
+        $mail->send();
+    }
+    
+    public function activate()
+    {
+        $this->confirm_type = null;
+        $this->confirm_hash = null;
+        $this->status       = Proxima_Model_Members::STATUS_ACTIVE;
+        $this->save();
+    }
+    
+    public function sendActivateEmail()
+    {
+        // build email text
+        $text = $this->interpolate($this->_config['email_activate_body']);
+        
+        // build email message
+        $mail = Solar::factory('Solar_Mail_Message');
+        $mail->setFrom($this->_config['email_activate_from'])
+             ->addTo($this->email)
+             ->setSubject($this->_config['email_activate_subj'])
              ->setText($text);
         
         // send it!

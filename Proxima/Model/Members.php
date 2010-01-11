@@ -19,7 +19,8 @@ class Proxima_Model_Members extends Proxima_Sql_Model
      *  Confirm type constants.
      *
      */
-    const CONFIRM_TYPE_RESET  = 'reset';
+    const CONFIRM_TYPE_RESET     = 'reset';
+    const CONFIRM_TYPE_ACTIVATE  = 'activate';
     
     /**
      * 
