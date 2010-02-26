@@ -350,7 +350,7 @@ abstract class Proxima_Controller_Bread extends Proxima_Controller_Page
     
     /**
      * 
-     * Search records for a term, even a partially-matching one.
+     * Search records for a term.
      * 
      * @return void
      * 
@@ -557,7 +557,11 @@ abstract class Proxima_Controller_Bread extends Proxima_Controller_Page
     {
         $this->form = Solar::factory('Solar_Form');
         
-        $this->form->attribs['action'] = "/{$this->_controller}/search";
+        $uri = Solar::factory('Solar_Uri_Action', array(
+            'uri' => "/{$this->_controller}/search",
+        ));
+        
+        $this->form->attribs['action'] = $uri->get();
         $this->form->attribs['method'] = "get";
         
         $this->form->setElement('q', array(
