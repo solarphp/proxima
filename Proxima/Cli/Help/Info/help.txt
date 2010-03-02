@@ -1,0 +1,5 @@
+Proxima command line tool.
+
+Usage: %*proxima <command> <options> <params>%n
+
+Try 'proxima help <command>' for help on a specific command.
