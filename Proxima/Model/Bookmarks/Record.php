@@ -6,13 +6,6 @@
  */
 class Proxima_Model_Bookmarks_Record extends Proxima_Model_Nodes_Record
 {
-    protected function _setup()
-    {
-        parent::_setup();
-        $this->_addFilter('uri', 'validateNotBlank');
-        $this->_addFilter('subj', 'validateNotBlank');
-    }
-    
     public function newForm($spec = null)
     {
         $form = parent::newForm($spec);
@@ -26,7 +19,9 @@ class Proxima_Model_Bookmarks_Record extends Proxima_Model_Nodes_Record
             'cols' => '40',
         ));
         
-        $form->setAttribs('bookmark[uri]', array(
+        $form->setType('bookmark[body]', 'text');
+        
+        $form->setAttribs('bookmark[body]', array(
             'size' => '40',
         ));
         
