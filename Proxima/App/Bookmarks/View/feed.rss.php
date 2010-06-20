@@ -15,7 +15,7 @@ foreach ($this->list as $item) {
     $title       = $this->escape($item->subj);
     $pub_date    = $this->date($item->updated, DATE_RSS);
     $description = $this->escape($item->summ);
-    $link        = $this->escape($item->uri);
+    $link        = $this->escape($item->body);
     
     if ($item->updated > $latest) {
         $latest = $item->updated;
@@ -42,9 +42,9 @@ $uri->format = '';
 ?>
 <rss version="2.0">
     <channel>
-        <title><?php echo $this->escape($this->layout_title) ?></title>
+        <title><?php echo $this->escape($this->layout_head['title']) ?></title>
         <link><?php echo $this->escape($uri->get(true)) ?></link>
-        <description><?php echo $this->escape($this->feed['descr']) ?></description>
+        <description><?php echo $this->escape($this->feed_descr) ?></description>
         <pubDate><?php echo $this->date($latest, DATE_RSS) ?></pubDate>
         <?php echo $items ?>
     

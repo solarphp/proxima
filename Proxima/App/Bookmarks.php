@@ -54,6 +54,8 @@ class Proxima_App_Bookmarks extends Proxima_Controller_Bread
     // the list of all tags in the system
     public $tag_options;
     
+    public $feed_descr;
+    
     protected $_action_format = array(
         'browse' => array('rss'),
         'member' => array('rss'),
@@ -147,6 +149,12 @@ class Proxima_App_Bookmarks extends Proxima_Controller_Bread
         );
     }
     
+    public function actionBrowse()
+    {
+        parent::actionBrowse();
+        $this->feed_descr = $this->_action;
+    }
+    
     public function actionMember($handle = null)
     {
         // is the user allowed access?
@@ -174,6 +182,9 @@ class Proxima_App_Bookmarks extends Proxima_Controller_Bread
             'paging' => $this->_query('paging', 10),
             'count_pages' => true,
         ));
+        
+        // feed description
+        $this->feed_descr = $this->_action . ': ' . $handle;
     }
     
     public function actionTags($tags = null)
@@ -205,6 +216,9 @@ class Proxima_App_Bookmarks extends Proxima_Controller_Bread
         
         // set the list of tags used for the search
         $this->tags = $tags;
+        
+        // feed description
+        $this->feed_descr = $this->_action . ': ' . $tags;
     }
     
     public function actionAdd()
