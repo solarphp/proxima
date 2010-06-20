@@ -3,7 +3,8 @@
 <h2 class="accessibility">Local</h2>
 
 <?php
-    include $this->template('_localAddQuick');
+    echo "<p>" . $this->action('/search', 'ACTION_SEARCH') . "</p>\n";
+    include $this->template('_localAddMarkThis');
     include $this->template('_localTagOrder');
     include $this->template('_localTagList');
 ?>

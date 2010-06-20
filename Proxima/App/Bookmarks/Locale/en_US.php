@@ -1,6 +1,7 @@
 <?php
 return array(
     'ACTION_ADD' => 'Add New Bookmark',
+    'ACTION_SEARCH' => 'Search Bookmarks',
     'ERR_NO_RECORDS' => 'No bookmarks found.',
     'HEADING_MEMBER' => 'For Member',
     'HEADING_TAGS'   => 'For Tags',
@@ -12,6 +13,6 @@ return array(
     'TEXT_ORDER_POS_DESC' => 'Position (Desc)',
     'TEXT_ORDER_SUBJ_ASC' => 'Title',
     'TEXT_ORDER_SUBJ_DESC' => 'Title (Desc)',
-    'TEXT_DRAG_THIS' => 'Drag this link to your toolbar for quick bookmarking: ',
-    'TEXT_QUICKMARK' => 'QuickMark',
+    'TEXT_DRAG_THIS' => 'Drag this link to your toolbar for easy bookmarking: ',
+    'TEXT_MARK_THIS' => 'Mark This',
 );

@@ -1,7 +1,7 @@
     <ul class="bookmarks-list">
     <?php foreach ($list as $item): ?>
         <li class="bookmarks-item"><?php
-            echo $this->anchor($item->uri, $item->subj);
+            echo $this->anchor($item->body, $item->subj);
         ?><ul>
         
             <li>created by <?php

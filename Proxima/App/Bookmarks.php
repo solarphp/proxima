@@ -22,7 +22,7 @@ class Proxima_App_Bookmarks extends Proxima_Controller_Bread
      * @var array
      * 
      */
-    public $item_cols = array('subj', 'uri', 'created', 'member_handle', 'tags_as_string');
+    public $item_cols = array('subj', 'body', 'created', 'member_handle', 'tags_as_string');
     
     /**
      * 
@@ -31,7 +31,7 @@ class Proxima_App_Bookmarks extends Proxima_Controller_Bread
      * @var array
      * 
      */
-    public $list_cols = array('subj', 'uri', 'created', 'member_handle', 'tags_as_string');
+    public $list_cols = array('subj', 'body', 'created', 'member_handle', 'tags_as_string');
     
     // which member bookmarks are being shown
     public $member;
@@ -73,8 +73,8 @@ class Proxima_App_Bookmarks extends Proxima_Controller_Bread
      * 
      */
     protected $_form_cols = array(
-        'add'  => array('uri', 'subj', 'summ', 'pos', 'tags_as_string'),
-        'edit' => array('uri', 'subj', 'summ', 'pos', 'tags_as_string'),
+        'add'  => array('body', 'subj', 'summ', 'pos', 'tags_as_string'),
+        'edit' => array('body', 'subj', 'summ', 'pos', 'tags_as_string'),
     );
     
     /**
@@ -84,7 +84,7 @@ class Proxima_App_Bookmarks extends Proxima_Controller_Bread
      * @var array
      * 
      */
-    protected $_search_cols = array('subj', 'body', 'uri');
+    protected $_search_cols = array('subj', 'summ', 'body');
     
     protected function _setOrder()
     {
@@ -220,13 +220,13 @@ class Proxima_App_Bookmarks extends Proxima_Controller_Bread
             return $this->_redirect("/{$this->_controller}/browse");
         }
         
-        // get these values from the query string (via QuickMark)
-        $uri  = $this->_query('uri');
+        // get these values from the query string (via Mark This)
+        $body = $this->_query('body');
         $subj = $this->_query('subj');
         
         // does the bookmark exist already for this member?
-        $item = $this->_model->bookmarks->fetchOneByUriAndMemberHandle(
-            $uri,
+        $item = $this->_model->bookmarks->fetchOneByBodyAndMemberHandle(
+            $body,
             $this->user->auth->handle
         );
         
@@ -238,8 +238,8 @@ class Proxima_App_Bookmarks extends Proxima_Controller_Bread
         // set a new record ...
         $this->_setItemNew();
         
-        // .. and pre-populate with the QuickMark uri and subj
-        $this->item->uri = $uri;
+        // .. and pre-populate with the Mark This body (uri) and subj
+        $this->item->body = $body;
         $this->item->subj = $subj;
         
         // process: save
