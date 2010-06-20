@@ -15,10 +15,11 @@ class Proxima_Model_Tags extends Proxima_Sql_Model {
      */
     protected function _setup()
     {
-        $setup             = Solar_Class::dir(__CLASS__, 'Setup');
-        $this->_table_name = Solar_File::load($setup . 'table_name.php');
-        $this->_table_cols = Solar_File::load($setup . 'table_cols.php');
-        $this->_index      = Solar_File::load($setup . 'index_info.php');
+        // use metadata generated from make-model
+        $metadata          = Solar::factory('Proxima_Model_Tags_Metadata');
+        $this->_table_name = $metadata->table_name;
+        $this->_table_cols = $metadata->table_cols;
+        $this->_index_info = $metadata->index_info;
         
         $this->_hasMany('taggings');
         $this->_hasManyThrough('nodes', 'taggings');
