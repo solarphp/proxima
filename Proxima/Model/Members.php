@@ -29,8 +29,11 @@ class Proxima_Model_Members extends Proxima_Sql_Model
      * @return void
      * 
      */
-    protected function _setup()
+    protected function _preSetup()
     {
+        // chain to parent
+        parent::_preSetup();
+        
         // use metadata generated from make-model
         $metadata          = Solar::factory('Proxima_Model_Members_Metadata');
         $this->_table_name = $metadata->table_name;

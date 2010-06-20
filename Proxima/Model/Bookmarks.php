@@ -16,10 +16,13 @@ class Proxima_Model_Bookmarks extends Proxima_Model_Nodes
      * @return void
      * 
      */
-    protected function _setup()
+    protected function _preSetup()
     {
-        parent::_setup();
+        // chain to parent
+        parent::_preSetup();
+        
         $this->_addFilter('subj', 'validateNotBlank');
+        $this->_addFilter('body', 'validateNotBlank');
         $this->_addFilter('body', 'validateUri');
         $this->_addFilter('tags_as_string', 'validateNotBlank');
     }
