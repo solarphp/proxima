@@ -53,6 +53,16 @@ class Proxima_Model_Nodes_Metadata extends Proxima_Sql_Model_Metadata
         'primary' => false,
         'autoinc' => false,
       ),
+      'publish' => array (
+        'name' => 'publish',
+        'type' => 'timestamp',
+        'size' => NULL,
+        'scope' => NULL,
+        'default' => NULL,
+        'require' => false,
+        'primary' => false,
+        'autoinc' => false,
+      ),
       'slug' => array (
         'name' => 'slug',
         'type' => 'varchar',
@@ -156,6 +166,12 @@ class Proxima_Model_Nodes_Metadata extends Proxima_Sql_Model_Metadata
         'type' => 'normal',
         'cols' => array (
           0 => 'updated',
+        ),
+      ),
+      'publish' => array (
+        'type' => 'normal',
+        'cols' => array (
+          0 => 'publish',
         ),
       ),
       'name' => array (
