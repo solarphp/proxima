@@ -90,6 +90,12 @@ class Proxima_App_Members extends Proxima_Controller_Bread {
             $this->feedback = 'SUCCESS_ADDED';
         }
         
+        // if no ID, and we have an authenticated user, use the authenticated
+        // user's ID
+        if (! $id && $this->user->auth->isValid()) {
+            $id = $this->user->auth->uid;
+        }
+        
         // perform the rest of the action
         return parent::actionRead($id);
     }
@@ -329,8 +335,8 @@ class Proxima_App_Members extends Proxima_Controller_Bread {
      * 
      * Explicit login handling for members.
      * 
-     * Normally, Solar_Auth_Adapter::start() will do everything for you when
-     * Solar_Auth_Adapter::$allow is true. This method makes it so that even 
+     * Normally, Solar_Auth::start() will do everything for you when
+     * Solar_Auth::$allow is true. This method makes it so that even 
      * when $allow is false, you can still process a login request.
      * 
      * @return void
@@ -351,9 +357,10 @@ class Proxima_App_Members extends Proxima_Controller_Bread {
         }
         
         // is this a login request?
-        if ($auth->isLoginRequest()) {
+        $login = $auth->getLoginProtocol();
+        if ($login) {
             // process it; this will honor any redirect in the form vars
-            $auth->processLogin();
+            $auth->processLogin($login);
             
             // did it succeed?
             if ($auth->isValid()) {
@@ -384,8 +391,8 @@ class Proxima_App_Members extends Proxima_Controller_Bread {
      * 
      * Explicit logout handling for members.
      * 
-     * Normally, Solar_Auth_Adapter::start() will do everything for you when
-     * Solar_Auth_Adapter::$allow is true. This method makes it so that even 
+     * Normally, Solar_Auth::start() will do everything for you when
+     * Solar_Auth::$allow is true. This method makes it so that even 
      * when $allow is false, you can still process a logout request.
      * 
      * @return void
@@ -406,7 +413,10 @@ class Proxima_App_Members extends Proxima_Controller_Bread {
         }
         
         // process the logout; this will honor any redirect in the form vars
-        $auth->processLogout();
+        $logout = $auth->getLogoutProtocol();
+        if ($logout) {
+            $auth->processLogout($logout);
+        }
         
         // if we have a flash redirect, honor it
         $uri = $this->_session->getFlash('redirect');

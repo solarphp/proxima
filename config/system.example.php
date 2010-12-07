@@ -30,6 +30,7 @@ $config['Solar_Controller_Front'] = array(
     ),
     'disable'  => array(),
     'default' => 'bookmarks',
+    'explain' => true,
     'rewrite' => array(),
     'routing' => array(),
 );
@@ -41,13 +42,15 @@ $config['Solar_Sql_Model_Catalog']['classes'] = array(
 
 // authentication
 $config['Solar_Auth'] = array(
-    'adapter'    => 'Solar_Auth_Adapter_Sql',
-    'table'      => 'members',
-    'handle_col' => 'handle',
-    'passwd_col' => 'passwd',
-    'email_col'  => 'email',
-    'uri_col'    => 'uri',
-    'uid_col'    => 'id',
+    'storage' => array(
+        'adapter'       => 'Solar_Auth_Storage_Adapter_Sql',
+        'table'         => 'members',
+        'handle_col'    => 'handle',
+        'passwd_col'    => 'passwd',
+        'email_col'     => 'email',
+        'uri_col'       => 'uri',
+        'uid_col'       => 'id',
+    ),
 );
 
 // access control

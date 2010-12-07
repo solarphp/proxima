@@ -6,7 +6,7 @@
  */
 class Proxima_Model_Nodes_Record extends Proxima_Sql_Model_Record
 {
-    public function accessIsOwner(Solar_Auth_Adapter $auth, Solar_Role_Adapter $role)
+    public function accessIsOwner(Solar_Auth $auth, Solar_Role_Adapter $role)
     {
         return $auth->handle == $this->member_handle;
     }

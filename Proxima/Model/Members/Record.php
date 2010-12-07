@@ -43,7 +43,7 @@ class Proxima_Model_Members_Record extends Proxima_Sql_Model_Record
         'email_forgot_body'        => null,
     );
     
-    public function accessIsOwner(Solar_Auth_Adapter $auth, Solar_Role_Adapter $role)
+    public function accessIsOwner(Solar_Auth $auth, Solar_Role_Adapter $role)
     {
         return $auth->handle == $this->handle;
     }
@@ -112,7 +112,7 @@ class Proxima_Model_Members_Record extends Proxima_Sql_Model_Record
 	{
 	    parent::_preFilter();
 		if ($this->__isset('passwd_new')) {
-		    $salt = Solar_Config::get('Solar_Auth_Adapter_Sql', 'salt');
+		    $salt = Solar_Config::get('Solar_Auth_Storage_Adapter_Sql', 'salt');
 			$this->passwd = hash('md5', $salt . $this->passwd_new);
 		}
 	}
